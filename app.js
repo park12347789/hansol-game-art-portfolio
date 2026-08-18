@@ -93,12 +93,14 @@ class ScrollDirector {
         target.style.setProperty('--parallax-y', `${offset.toFixed(2)}px`);
       });
 
-      const storyRect = this.storyStrip.getBoundingClientRect();
-      const storyProgress = Math.max(-1, Math.min(1, (window.innerHeight / 2 - storyRect.top) / window.innerHeight));
-      this.storyWords.forEach((word, index) => {
-        const direction = index % 2 ? -1 : 1;
-        word.style.setProperty('--story-x', `${(storyProgress * direction * (index + 1) * 8).toFixed(2)}px`);
-      });
+      if (this.storyStrip) {
+        const storyRect = this.storyStrip.getBoundingClientRect();
+        const storyProgress = Math.max(-1, Math.min(1, (window.innerHeight / 2 - storyRect.top) / window.innerHeight));
+        this.storyWords.forEach((word, index) => {
+          const direction = index % 2 ? -1 : 1;
+          word.style.setProperty('--story-x', `${(storyProgress * direction * (index + 1) * 8).toFixed(2)}px`);
+        });
+      }
     }
 
     let activeIndex = 0;
@@ -106,8 +108,8 @@ class ScrollDirector {
       if (section.getBoundingClientRect().top <= window.innerHeight * 0.48) activeIndex = index;
     });
     const activeSection = this.sections[activeIndex];
-    this.chapterIndex.textContent = String(activeIndex + 1).padStart(2, '0');
-    this.chapterLabel.textContent = activeSection.dataset.chapter;
+    if (this.chapterIndex) this.chapterIndex.textContent = String(activeIndex + 1).padStart(2, '0');
+    if (this.chapterLabel) this.chapterLabel.textContent = activeSection.dataset.chapter;
     this.navLinks.forEach((link) => {
       link.classList.toggle('active', link.getAttribute('href') === `#${activeSection.id}`);
     });
@@ -282,6 +284,7 @@ class PortfolioApp {
   }
 
   setupMotionToggle() {
+    if (!this.motionToggle) return;
     this.motionToggle.addEventListener('click', () => {
       const paused = document.body.classList.toggle('motion-paused');
       this.motionToggle.setAttribute('aria-pressed', String(paused));
