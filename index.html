@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
+  <script src="ILineBattle.js" defer></script>
 </head>
 <body>
   <div class="space-backdrop" aria-hidden="true"></div>
@@ -237,5 +238,30 @@
     <span>© <span data-year></span> HANSOL PARK</span>
     <span class="system-label">GAME ART / VISUAL DEVELOPMENT</span>
   </footer>
+
+  <aside class="line-battle" data-line-battle aria-label="애쉬라인 군단과 러스트모 무리의 픽셀 라인 배틀">
+    <div class="line-battle__rail" aria-label="애쉬라인 증원">
+      <strong>ASHLINE</strong>
+      <button type="button" data-spawn="left:guard" disabled><canvas width="16" height="16" aria-hidden="true"></canvas><span>Q</span><em>04</em></button>
+      <button type="button" data-spawn="left:raider" disabled><canvas width="16" height="16" aria-hidden="true"></canvas><span>W</span><em>03</em></button>
+      <button type="button" data-spawn="left:gunner" disabled><canvas width="16" height="16" aria-hidden="true"></canvas><span>E</span><em>06</em></button>
+    </div>
+    <div class="line-battle__stage">
+      <div class="line-battle__hud">
+        <span data-battle-energy="left">CMD 06</span>
+        <button type="button" class="line-battle__start" data-battle-start>START</button>
+        <strong data-battle-status>READY // 38 SEC</strong>
+        <span data-battle-energy="right">CMD 06</span>
+      </div>
+      <canvas class="line-battle__canvas" data-battle-canvas width="320" height="96" role="img" aria-label="두 픽셀 군단이 황무지에서 자동으로 전투합니다">Canvas를 지원하는 브라우저에서 플레이할 수 있습니다.</canvas>
+    </div>
+    <div class="line-battle__rail line-battle__rail--right" aria-label="러스트모 증원">
+      <strong>RUSTMAW</strong>
+      <button type="button" data-spawn="right:guard" disabled><canvas width="16" height="16" aria-hidden="true"></canvas><span>I</span><em>04</em></button>
+      <button type="button" data-spawn="right:raider" disabled><canvas width="16" height="16" aria-hidden="true"></canvas><span>O</span><em>03</em></button>
+      <button type="button" data-spawn="right:gunner" disabled><canvas width="16" height="16" aria-hidden="true"></canvas><span>P</span><em>06</em></button>
+    </div>
+    <p class="sr-only" data-battle-live aria-live="polite">게임 준비됨</p>
+  </aside>
 </body>
 </html>
