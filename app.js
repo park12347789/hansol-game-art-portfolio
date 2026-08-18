@@ -4,7 +4,7 @@ class RevealDirector {
   constructor(reducedMotion) {
     this.reducedMotion = reducedMotion;
     this.targets = [...document.querySelectorAll(
-      '.section-heading, .story-strip, .project-card, .proof-card, .gallery-grid figure, .about-portrait, .about-copy, .skill-groups > div, .contact-section'
+      '.section-heading, .story-strip, .case-study-card, .career-list article, .project-card, .proof-card, .gallery-grid figure, .about-portrait, .about-copy, .skill-groups > div, .contact-section'
     )];
     this.observer = null;
   }
